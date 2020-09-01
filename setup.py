@@ -16,7 +16,7 @@
 #
 # refer. https://wiki.python.org/moin/Distutils/Tutorial?highlight=%28setup.py%29
 #
-from setuptools import setup
+from setuptools import setup, find_packages
 
 __version__ = '1.0.0'
 __title__ = 'hcm_admin'
@@ -39,7 +39,7 @@ setup(
     license='Apache License 2.0',
     keywords='huawei cloud development',
     install_requires=install_requires,
-    packages=['push_admin'],
+    packages=find_packages(),
     python_requires='>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*',
     classifiers=[
         'Development Status :: 5 - Production/Stable',
