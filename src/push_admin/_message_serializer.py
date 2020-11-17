@@ -56,7 +56,7 @@ class MessageSerializer(json.JSONEncoder):
 
     @classmethod
     def remove_null_values(cls, dict_value):
-        return {k: v for k, v in dict_value.items() if v not in [None, [], {}]}
+        return {k: v for k, v in list(dict_value.items()) if v not in [None, [], {}]}
 
     @classmethod
     def encode_notification(cls, notification):
@@ -542,7 +542,7 @@ class MessageSerializer(json.JSONEncoder):
         result = {
             'aps': cls.encode_apns_payload_aps(apns_payload.aps)
         }
-        for key, value in apns_payload.custom_data.items():
+        for key, value in list(apns_payload.custom_data.items()):
             result[key] = value
         return cls.remove_null_values(result)
 
@@ -567,7 +567,7 @@ class MessageSerializer(json.JSONEncoder):
         if apns_payload_aps.custom_data is not None:
             if not isinstance(apns_payload_aps.custom_data, dict):
                 raise ValueError('Aps.custom_data must be a dict.')
-            for key, val in apns_payload_aps.custom_data.items():
+            for key, val in list(apns_payload_aps.custom_data.items()):
                 if key in result:
                     raise ValueError('Multiple specifications for {0} in Aps.'.format(key))
                 result[key] = val
@@ -601,7 +601,7 @@ class MessageSerializer(json.JSONEncoder):
         if apns_payload_alert.custom_data is not None:
             if not isinstance(apns_payload_alert.custom_data, dict):
                 raise ValueError('ApsAlert.custom_data must be a dict.')
-            for key, val in apns_payload_alert.custom_data.items():
+            for key, val in list(apns_payload_alert.custom_data.items()):
                 result[key] = val
         return cls.remove_null_values(result)
 

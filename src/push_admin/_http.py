@@ -43,7 +43,7 @@ def _format_http_text(method, url, headers, body):
     result = method + ' ' + url + '\n'
 
     if headers is not None:
-        for key, value in headers.items():
+        for key, value in list(headers.items()):
             result = result + key + ': ' + value + '\n'
 
     result = result + body
