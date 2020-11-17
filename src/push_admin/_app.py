@@ -66,7 +66,7 @@ class App(object):
         params['client_secret'] = self.app_secret
         params['client_id'] = self.app_id
 
-        msg_body = urllib.urlencode(params)
+        msg_body = urllib.parse.urlencode(params)
 
         try:
             response = _http.post(self.token_server, msg_body, headers)
