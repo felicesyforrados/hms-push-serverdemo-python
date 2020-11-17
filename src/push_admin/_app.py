@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import urllib.request, urllib.parse, urllib.error
+from urllib.parse import urlencode
 import json
 import time
 from src.push_admin import _http
